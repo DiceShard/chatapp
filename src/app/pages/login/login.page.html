@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Acceso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Username</ion-label>
+    <ion-input [(ngModel)]="user.username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input [(ngModel)]="user.password" type="password"></ion-input>
+  </ion-item>
+
+
+
+  <ion-button expand="block" (click)="validar()" color="primary" shape="round">
+   Ingresar
+  </ion-button>
+</ion-content>
