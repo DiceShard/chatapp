@@ -25,3 +25,24 @@
 #container a {
   text-decoration: none;
 }
+
+ion-menu.md ion-content {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+}
+
+ion-menu.name ion-list {
+  padding: 20px 0;
+}
+
+ion-menu.name ion-item {
+  --padding-start: 10px;
+  --padding-end: 10px;
+  border-radius: 4px;
+}
+
+ion-icon[slot="start"] {
+  margin-inline-end: 16px;
+}

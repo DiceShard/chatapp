@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Grupos y Mensajes
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,49 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Grupos y Mensajes</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid class="ion-text-center ion-padding-top ion-padding-bottom">
+    <ion-row>
+      <ion-title>
+        Grupos
+      </ion-title>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item #chatlist *ngFor="let item of grupos" detail (click)="ingresarGrupo(item)" lines="full">
+    <ion-icon name="people-outline" slot="start" aria-hidden="true"></ion-icon>
+    <ion-label class="ion-text-wrap">
+      <ion-text color="primary">
+        <h3>{{item.name}}</h3>
+      </ion-text>
+    </ion-label>
+  </ion-item>
+
+  <ion-grid class="ion-text-center ion-padding-top ion-padding-bottom">
+    <ion-row>
+      <ion-title>
+        Mensajes Privados
+      </ion-title>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item *ngFor="let item of users" detail (click)="ingresarDM(item)" lines="full">
+    <ion-icon *ngIf="item.id == userid; else templateElse" name="bookmark-outline" slot="start" aria-hidden="true"></ion-icon>
+    <ng-template #templateElse>
+      <ion-icon name="person-outline" slot="start" aria-hidden="true"></ion-icon>
+    </ng-template>
+    <ion-label class="ion-text-wrap">
+      <ion-text color="primary">
+        <h3 *ngIf="item.id == userid; else templateElseName">{{item.username}} (YO)</h3>
+        <ng-template #templateElseName>
+          <h3>{{item.username}}</h3>
+        </ng-template>
+      </ion-text>
+    </ion-label>
+  </ion-item>
+  
+
 </ion-content>
