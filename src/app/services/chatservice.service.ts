@@ -4,6 +4,7 @@ import { LoginResponse } from '../interfaces/login-response';
 import { groupByUserResponse } from '../interfaces/groupByUserResponse'
 import { userResponse } from '../interfaces/usersResponse'
 import { groupMessageResponse } from '../interfaces/groupMessageResponse'
+import { privateMessageResponse } from '../interfaces/privateMessageResponse'
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,29 @@ export class ChatserviceService {
       }
     }
 
-    return this.http.post(url, body, options)
+    return this.http.post(url, body, options);
+  }
+  getPrivateMessages(senderid: number, receiverid: number) {
+    let url = `https://www.hostcatedral.com/api/app-chat/public/private-messages-by-user/${senderid}/${receiverid}`
+
+    return this.http.get<privateMessageResponse[]>(url);
+  }
+
+  sendPrivateMessage(senderid: number, receiverid: number, content: string) {
+    let url = 'https://www.hostcatedral.com/api/app-chat/public/private-messages';
+
+    let body = {
+      sender_id: senderid,
+      receiver_id: receiverid,
+      content: content
+    }
+
+    let options = {
+      headers:{
+        'Authorization':'Bearer ' + localStorage.getItem('token')
+      }
+    }
+
+    return this.http.post(url, body, options);
   }
 }

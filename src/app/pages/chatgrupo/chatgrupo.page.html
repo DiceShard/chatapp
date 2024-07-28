@@ -8,31 +8,35 @@
 </ion-header>
 
 <ion-content #content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{grupo_seleccionado.name}}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-item *ngFor="let msg of mensajes; let last = last" lines="full">
-    <ion-label class="ion-text-start">
+  <ion-item *ngFor="let msg of mensajes; let last = last" lines="none">
+    <ion-label id="mensaje" *ngIf="msg.sender != useridstring; else templateElse" class="ion-text-start">
       <ion-text color="primary">
-        <h2>{{msg.sender}}</h2>
+        <p id="sender">{{msg.sender}}</p>
       </ion-text>
       <ion-text>
-        <h3>{{msg.content}}</h3>
+        <p id="content">{{msg.content}}</p>
       </ion-text>
       <ion-text>
-        <h4>{{msg.sent_at}}</h4>
+        <p id="datetime">{{msg.sent_at}}</p>
       </ion-text>
     </ion-label>
+    <ng-template #templateElse>
+      <ion-label id="mensaje" class="ion-text-end">
+        <ion-text>
+          <p id="content">{{msg.content}}</p>
+        </ion-text>
+        <ion-text>
+          <p id="datetime">{{msg.sent_at}}</p>
+        </ion-text>
+      </ion-label>
+    </ng-template>
     {{last ? scrollToBottom() : ''}}
   </ion-item>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar id="input">
-      <ion-input [(ngModel)]="mensaje" fill="outline"></ion-input>
+      <ion-input [(ngModel)]="mensaje" fill="outline" shape="round"></ion-input>
       <ion-buttons slot="primary">
         <ion-button expand="block" color="primary" (click)="sendMsg()">
           <ion-icon name="send-outline"></ion-icon>

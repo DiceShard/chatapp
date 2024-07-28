@@ -24,6 +24,7 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.clear();
   }
 
   async Alerta(msg:string) {
@@ -44,11 +45,9 @@ export class LoginPage implements OnInit {
    }).then((res)=>{
      res.present();
    this.serviceChat.login(this.user.username,this.user.password).subscribe(
-     data=>{
+    data=>{
       res.dismiss();
       this.datos_usuario=data;
-      console.log(this.datos_usuario.data.username);
-      console.log(this.datos_usuario.data.token);
 
       localStorage.setItem("username",this.datos_usuario.data.username);
       localStorage.setItem("userid", this.datos_usuario.data.id.toString());
@@ -56,14 +55,12 @@ export class LoginPage implements OnInit {
 
       this.router.navigateByUrl('/home');         
     },  
-     error=>{
+    error=>{
       res.dismiss();
       console.log(error.error.message);
       this.Alerta(error.error.message);
        
-     }
-     )
-   });
+    }
+  )});
  }
-
 }

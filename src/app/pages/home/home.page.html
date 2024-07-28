@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="toolbar">
     <ion-title>
       Grupos y Mensajes
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()"> <ion-icon name="log-out-outline"></ion-icon> </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -45,7 +48,7 @@
     </ng-template>
     <ion-label class="ion-text-wrap">
       <ion-text color="primary">
-        <h3 *ngIf="item.id == userid; else templateElseName">{{item.username}} (YO)</h3>
+        <h3 *ngIf="item.id == userid; else templateElseName">Notas</h3>
         <ng-template #templateElseName>
           <h3>{{item.username}}</h3>
         </ng-template>

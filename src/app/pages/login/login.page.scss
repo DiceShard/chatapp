@@ -1,0 +1,29 @@
+#input {
+    margin: 15px;
+}
+
+#lable {
+    margin-bottom: 5px;
+}
+
+#loginbtn{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+#passrecovery {
+    display: flex;
+    justify-content: center;
+}
+
+#passrecovery p {
+    font-size: small;
+}
+
+#loginfrm {
+    background-color: #262626;
+    margin: 15px;
+    padding: 5px;
+    border-radius: 25px;
+}

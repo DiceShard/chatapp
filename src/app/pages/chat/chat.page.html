@@ -1,13 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>chat</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{usuario_seleccionado.username}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">chat</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="listUpsideDown" #contenido>
+    <ion-item class="messageUpsideDown" *ngFor="let msg of mensajes; trackBy:identify;" lines="none">
+      <ion-label id="mensaje" *ngIf="msg.sender_id != userid; else templateElse" class="ion-text-start">
+        <ion-text>
+          <p id="content">{{msg.content}}</p>
+        </ion-text>
+        <ion-text>
+          <p id="datetime">{{msg.sent_at}}</p>
+        </ion-text>
+      </ion-label>
+      <ng-template #templateElse>
+        <ion-label id="mensaje" class="ion-text-end">
+          <ion-text>
+            <p id="content">{{msg.content}}</p>
+          </ion-text>
+          <ion-text>
+            <p id="datetime">{{msg.sent_at}}</p>
+          </ion-text>
+        </ion-label>
+      </ng-template>
+    </ion-item>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar id="input">
+      <ion-input [(ngModel)]="mensaje" fill="outline" shape="round"></ion-input>
+      <ion-buttons slot="primary">
+        <ion-button expand="block" color="primary" (click)="sendMsg()">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

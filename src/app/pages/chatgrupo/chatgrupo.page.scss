@@ -1,5 +1,5 @@
 #input {
-  padding: 5px;
+  padding: 10px;
   justify-content: space-between;
 }
 
@@ -9,4 +9,25 @@
 
 ion-icon {
   font-size: 2rem;
+}
+
+#datetime {
+  font-size: xx-small;
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
+#content {
+  padding-left: 5px;
+}
+
+#sender {
+  font-size: small;
+  padding-left: 5px;
+}
+
+#mensaje {
+  border-radius: 35px 20px;
+  background-color: #262626;
+  padding: 10px;
 }

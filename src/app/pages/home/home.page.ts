@@ -27,7 +27,6 @@ export class HomePage {
   getGroups() {
     this.chatservice.buscargrupos(this.userid).subscribe(
       data=>{
-        //console.log(data);
         this.grupos=data;
       },
       error=>{
@@ -37,26 +36,27 @@ export class HomePage {
   }
 
   ingresarGrupo(item:groupByUserResponse) {
-    //console.log(item);
     let navigationExtras: NavigationExtras = {
       state: {
         grupoSeleccionado: item
       }
     }
-    
     this.router.navigate(['/chatgrupo'], navigationExtras);
-
   }
 
   ingresarDM(item:userResponse){
-    console.log(item)
+    let navigationExtras: NavigationExtras = {
+      state: {
+        usuarioSeleccionado: item
+      }
+    }
+    this.router.navigate(['/chat'], navigationExtras);
   }
 
   getUsers() {
     this.chatservice.getUsers().subscribe(
       data=>{
         this.users = data
-        //console.log(this.users);
       },
       error=>{
         console.log(error);
@@ -64,4 +64,8 @@ export class HomePage {
     )
   }
 
+  logout() {
+    this.router.navigate(['/']);
+    localStorage.clear();
+  }
 }

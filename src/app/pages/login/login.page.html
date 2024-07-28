@@ -1,22 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Acceso</ion-title>
+    <ion-title>Chatapp</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">Username</ion-label>
-    <ion-input [(ngModel)]="user.username"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input [(ngModel)]="user.password" type="password"></ion-input>
-  </ion-item>
-
-
-
-  <ion-button expand="block" (click)="validar()" color="primary" shape="round">
-   Ingresar
-  </ion-button>
+  <div id="loginfrm">
+    <div id="input">
+      <div id="lable">
+        <ion-label id="lable" position="floating">Usuario</ion-label>
+      </div>
+      <ion-input lable="Usuario" label-placement="floating" fill="outline" [(ngModel)]="user.username"></ion-input>
+    </div>
+    <div id="input">  
+      <div id="lable">
+        <ion-label position="floating">Contraseña</ion-label>
+      </div>  
+      <ion-input lable="Contraseña" label-placement="floating" fill="outline" [(ngModel)]="user.password" type="password"></ion-input>
+    </div>
+    <div id="loginbtn">
+      <ion-button (click)="validar()" color="primary" shape="round">
+      Ingresar
+      </ion-button>
+    </div>
+    <div id="passrecovery">
+      <ion-text color="primary">
+        <p>Olvide mi contraseña</p>
+      </ion-text>
+    </div>
+  </div>
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component, ViewChild  } from '@angular/core';
 import { IonContent } from '@ionic/angular';
-import {  Router,ActivatedRoute,NavigationExtras } from "@angular/router";
+import {  Router, ActivatedRoute } from "@angular/router";
 import { ChatserviceService } from 'src/app/services/chatservice.service';
 import { groupMessageResponse } from '../../interfaces/groupMessageResponse';
 import { groupByUserResponse } from '../../interfaces/groupByUserResponse';
@@ -18,6 +18,7 @@ export class ChatgrupoPage  {
   mensajes:groupMessageResponse[] = [];
   mensaje!:string;
   userid!:number;
+  useridstring!:string;
 
   constructor(
     private router: Router,
@@ -25,6 +26,7 @@ export class ChatgrupoPage  {
     private chatservice: ChatserviceService
   ) {
     this.userid = parseInt(localStorage.getItem("userid")!)
+    this.useridstring = "user"+this.userid.toString();
     this.route.queryParams.subscribe(
       params =>{
         if (this.router.getCurrentNavigation()?.extras.state){
@@ -35,6 +37,10 @@ export class ChatgrupoPage  {
         }
       }
     )
+  }
+
+  parseid (id:string) {
+    return parseInt(id);
   }
 
   scrollToBottom() {
@@ -59,6 +65,7 @@ export class ChatgrupoPage  {
       data=>{
         console.log(data);
         this.getMensajes();
+        this.mensaje = ""
       },
       error=>{
         console.log(error);
